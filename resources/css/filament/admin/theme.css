@@ -1,0 +1,68 @@
+@import '../../../../vendor/filament/filament/resources/css/index.css';
+
+@config 'tailwind.config.js';
+
+/* Custom Modern Minimalist Styles */
+
+.fi-section {
+    @apply rounded-2xl shadow-soft border-none bg-white dark:bg-gray-900 !important;
+}
+
+.fi-card {
+    @apply rounded-2xl shadow-soft border-none bg-white dark:bg-gray-900 !important;
+}
+
+.fi-stats-overview-widget-stat {
+    @apply rounded-2xl shadow-soft border-none bg-white dark:bg-gray-900 !important;
+}
+
+.fi-ta-ctn {
+    @apply rounded-2xl shadow-soft border-none overflow-hidden !important;
+}
+
+.fi-btn {
+    @apply rounded-xl font-semibold !important;
+}
+
+.fi-input {
+    @apply rounded-xl !important;
+}
+
+.fi-select {
+    @apply rounded-xl !important;
+}
+
+.fi-sidebar {
+    @apply border-r border-gray-100 dark:border-gray-800 !important;
+}
+
+.fi-topbar {
+    @apply border-b border-gray-100 dark:border-gray-800 !important;
+}
+
+/* Bottom Navigation for Mobile */
+@media (max-width: 1023px) {
+    .fi-sidebar {
+        display: none !important;
+    }
+    
+    .fi-main {
+        padding-bottom: 80px !important;
+    }
+}
+
+.mobile-bottom-nav {
+    @apply fixed bottom-0 left-0 right-0 bg-white dark:bg-gray-900 border-t border-gray-100 dark:border-gray-800 flex justify-around items-center h-16 z-50 lg:hidden;
+}
+
+.mobile-nav-item {
+    @apply flex flex-col items-center justify-center text-gray-500 dark:text-gray-400 text-xs;
+}
+
+.mobile-nav-item.active {
+    @apply text-emerald-600 dark:text-emerald-500;
+}
+
+.mobile-fab {
+    @apply fixed bottom-20 right-4 w-14 h-14 bg-emerald-600 text-white rounded-full shadow-lg flex items-center justify-center z-50 lg:hidden;
+}
