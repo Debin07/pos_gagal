@@ -1,59 +1,231 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Gas Galon - Aplikasi Manajemen Stok Gas & Galon
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Aplikasi web untuk mengelola stok gas dan galon berbasis Laravel 12 dengan Filament admin panel.
 
-## About Laravel
+## 🚀 Fitur
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+- ✅ Manajemen Produk (Gas & Galon)
+- ✅ Manajemen Stok & Restock
+- ✅ Point of Sale (POS) System
+- ✅ Manajemen Pelanggan
+- ✅ Laporan Transaksi
+- ✅ Admin Panel dengan Filament
+- ✅ Multi-user support
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## 🛠️ Tech Stack
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- **Backend**: Laravel 12
+- **Frontend**: Filament 3 (Admin Panel)
+- **Database**: MySQL
+- **Styling**: Tailwind CSS
+- **Deployment**: VPS/Cloud
 
-## Learning Laravel
+## 📋 Prerequisites
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+- PHP 8.2+
+- Composer
+- Node.js & NPM
+- MySQL 8.0+
+- Git
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## 🔧 Installation
 
-## Laravel Sponsors
+1. **Clone Repository**
+   ```bash
+   git clone https://github.com/yourusername/gas-galon.git
+   cd gas-galon
+   ```
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+2. **Install Dependencies**
+   ```bash
+   composer install
+   npm install
+   ```
 
-### Premium Partners
+3. **Environment Setup**
+   ```bash
+   cp .env.example .env
+   php artisan key:generate
+   ```
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+4. **Database Setup**
+   ```bash
+   # Edit .env file dengan database credentials
+   php artisan migrate
+   php artisan db:seed
+   ```
 
-## Contributing
+5. **Build Assets**
+   ```bash
+   npm run build
+   ```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+6. **Run Application**
+   ```bash
+   php artisan serve
+   ```
 
-## Code of Conduct
+## 🌐 Deployment Options
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+### Opsi 1: VPS (DigitalOcean/Linode/Vultr) - RECOMMENDED
 
-## Security Vulnerabilities
+#### Setup VPS Ubuntu/Debian:
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+```bash
+# Update system
+sudo apt update && sudo apt upgrade -y
 
-## License
+# Install required packages
+sudo apt install -y nginx mysql-server php8.2 php8.2-fpm php8.2-mysql php8.2-xml php8.2-mbstring php8.2-curl php8.2-zip php8.2-gd php8.2-intl php8.2-bcmath unzip curl
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+# Install Composer
+curl -sS https://getcomposer.org/installer | php
+sudo mv composer.phar /usr/local/bin/composer
+
+# Setup MySQL
+sudo mysql_secure_installation
+
+# Create database
+sudo mysql -u root -p
+CREATE DATABASE gas_galon;
+CREATE USER 'gas_user'@'localhost' IDENTIFIED BY 'your_password';
+GRANT ALL PRIVILEGES ON gas_galon.* TO 'gas_user'@'localhost';
+FLUSH PRIVILEGES;
+EXIT;
+```
+
+#### Deploy Application:
+
+```bash
+# Clone project
+cd /var/www
+sudo git clone https://github.com/yourusername/gas-galon.git
+cd gas-galon
+
+# Install dependencies
+sudo composer install --no-dev --optimize-autoloader
+sudo npm install && sudo npm run build
+
+# Setup environment
+sudo cp .env.example .env
+sudo php artisan key:generate
+
+# Setup storage permissions
+sudo chown -R www-data:www-data /var/www/gas-galon
+sudo chmod -R 755 /var/www/gas-galon
+sudo chmod -R 775 /var/www/gas-galon/storage
+sudo chmod -R 775 /var/www/gas-galon/bootstrap/cache
+
+# Run migrations
+sudo php artisan migrate --seed
+sudo php artisan storage:link
+```
+
+#### Nginx Configuration:
+
+```bash
+sudo nano /etc/nginx/sites-available/gas-galon
+```
+
+Add this configuration:
+```
+server {
+    listen 80;
+    server_name your_domain.com;
+    root /var/www/gas-galon/public;
+    index index.php index.html index.htm;
+
+    location / {
+        try_files $uri $uri/ /index.php?$query_string;
+    }
+
+    location ~ \.php$ {
+        include snippets/fastcgi-php.conf;
+        fastcgi_pass unix:/var/run/php/php8.2-fpm.sock;
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+        include fastcgi_params;
+    }
+
+    location ~ /\.ht {
+        deny all;
+    }
+}
+```
+
+```bash
+# Enable site
+sudo ln -s /etc/nginx/sites-available/gas-galon /etc/nginx/sites-enabled/
+sudo nginx -t
+sudo systemctl reload nginx
+```
+
+### Opsi 2: Railway (Mudah & Cepat)
+
+1. **Push ke GitHub**
+   ```bash
+   git add .
+   git commit -m "Ready for deployment"
+   git push origin main
+   ```
+
+2. **Deploy ke Railway**
+   - Daftar di [Railway.app](https://railway.app)
+   - Connect GitHub repository
+   - Railway akan auto-detect sebagai Laravel app
+   - Setup environment variables
+   - Database akan dibuat otomatis
+
+3. **Environment Variables untuk Railway:**
+   ```
+   APP_NAME="Gas Galon"
+   APP_ENV=production
+   APP_KEY=base64_key_from_artisan_key_generate
+   APP_DEBUG=false
+   APP_URL=https://your-app.railway.app
+
+   DB_CONNECTION=mysql
+   DB_HOST=${MYSQLHOST}
+   DB_PORT=${MYSQLPORT}
+   DB_DATABASE=${MYSQLDATABASE}
+   DB_USERNAME=${MYSQLUSER}
+   DB_PASSWORD=${MYSQLPASSWORD}
+   ```
+
+### Opsi 3: Heroku
+
+1. **Install Heroku CLI**
+   ```bash
+   # Download dari https://devcenter.heroku.com/articles/heroku-cli
+   ```
+
+2. **Setup Heroku App**
+   ```bash
+   heroku create your-app-name
+   heroku addons:create heroku:mysql
+   ```
+
+3. **Deploy**
+   ```bash
+   git push heroku main
+   heroku run php artisan migrate
+   ```
+
+### Opsi 4: AWS/Google Cloud/Azure
+
+Untuk production enterprise-level, gunakan:
+- **AWS**: EC2 + RDS + S3
+- **Google Cloud**: Compute Engine + Cloud SQL
+- **Azure**: App Service + Database
+
+## 🔐 Default Admin Account
+
+- **Email**: admin@gasgalon.com
+- **Password**: password
+
+## 📞 Support
+
+Jika ada pertanyaan, silakan buat issue di GitHub repository.
+
+## 📄 License
+
+This project is licensed under the MIT License.
